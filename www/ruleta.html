@@ -42,14 +42,15 @@
 
             var puntos1 = localStorage.PuntosUsuario;
             document.getElementById('nombre').textContent = usuario1;
-            if (puntos1 <= 20){
+            if (puntos1 <= 19){
                 swal({
                   type: 'error',
                   title: 'No tienes tienes puntos suficientes para participar.'
                 });
                 localStorage.PuntosUsuario = 15;
-                document.getElementById('puntos_usuario').textContent = localStorage.PuntosUsuario;
-            }
+                document.getElementById('puntos_usuario').textContent = 15;
+                $('#ruleta1').css("display", "none");
+            };
             document.getElementById('puntos_usuario').textContent = puntos1;
             // Create new wheel object specifying the parameters at creation time.
             var theWheel = new Winwheel({
