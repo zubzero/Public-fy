@@ -57,3 +57,8 @@ function LimpiarCampos(){
   document.registro.contrasena.value="";
   document.registro.nombre.focus();
 }
+if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition();
+    } else {
+        alert('No podemos acceder a tu ubicación, checa que tengas activada la geolocalización.');
+    };
