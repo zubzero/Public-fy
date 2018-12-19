@@ -12,8 +12,8 @@ function onBackKeyDown() {
 };
 // Si no tiene puntos que los ponga
 if (!localStorage.puntosiniciales){
-    localStorage.puntosiniciales = 80;
-    swal("Has obtenido 80 puntos!", "Registrate para ponerlos en tu cuenta.", "success");
+    localStorage.puntosiniciales = 100;
+    swal("Has obtenido 100 puntos!", "Registrate para ponerlos en tu cuenta.", "success");
     };
 
   var config = {
@@ -26,7 +26,7 @@ if (!localStorage.puntosiniciales){
   };
   firebase.initializeApp(config);
 
-if (localStorage.puntosiniciales <= 0) {
+if(localStorage.PuntosUsuario <= 0) {
   $.ajax({
     method: "PUT",
     url: "http://publify.com.mx/api.php/usuarios/"+usuarioID,

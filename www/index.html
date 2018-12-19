@@ -90,7 +90,7 @@
       
     });
     app.controller("homeCtl", function($scope, position, $http){
-      $scope.version = "1.2";
+      $scope.version = "1.5";
       $http.get('http://publify.com.mx/api.php/bannerportada?order=orden,asc', {cache: true}).success(function (data, status, headers, config) {
       $scope.banner = php_crud_api_transform(data);
       }).error(function (data, status, headers, config) {});
@@ -179,7 +179,7 @@
       success(function(data, status, headers, config) {
         $scope.pagcupon = data;
       }).error(function(data, status, headers, config) {});
-      $http.get('http://publify.com.mx/api.php/cupones?transform=1', {cache: true}).
+      $http.get('http://publify.com.mx/api.php/cupones?transform=1', {cache: false}).
       success(function(data, status, headers, config) {
         $scope.bdcupon = data;       
       }).error(function(data, status, headers, config) {});
@@ -188,6 +188,7 @@
       };
       $scope.getRandom = function (elemento) {
         idcup = elemento;
+        console.log("id cupon a borrar: "+idcup);
         console.log(idcup);
         var randomfolio = Math.floor(Math.random() * 9056);
         swal({
@@ -205,6 +206,7 @@
     });
     function borrarCupon(elemento){
           idcup = elemento;
+          document.getElementById('cuponID-'+idcup).style.display = 'none';
           $.ajax({
               method: "DELETE",
               url: "http://publify.com.mx/api.php/cupon_usuario/"+idcup
@@ -226,7 +228,8 @@
       $scope.detectar_tipo_sucursal = function (elemento) {  
       comentario_sucursal = elemento;
       console.log(comentario_sucursal);
-      }
+      };
+      
     });
     app.controller("PorlogoCtl", function($scope, $http, position, $rootScope) {
       $http.get('http://publify.com.mx/api.php/clientes?transform=1', {cache: true}).
@@ -297,19 +300,21 @@
           <ons-page ng-controller="homeCtl">
             <div class="center logo"><img ng-src="img/logo1.png"></div>
             <div class="homeUno">
-              <div class="tituloHome"><p>LA MEJOR PUBLICIDAD CERCA DE TÍ</p></div>
+              <div class="flecha19"></div>
               <div class="botonesHome">
-              <ons-button modifier="outline" onclick="menu.setMainPage('categorias.html', {closeMenu: true})"><ons-icon icon="fa-sitemap"></ons-icon><br /><span class="letraHome">POR CATEGORÍAS</span></ons-button>
-              <ons-button modifier="outline" onclick="menu.setMainPage('lista.html', {closeMenu: true})"><ons-icon icon="fa-street-view"></ons-icon><br /><span class="letraHome">CERCA DE MÍ</span></ons-button>
+              <ons-button class="borde_home" modifier="outline" onclick="menu.setMainPage('lista.html', {closeMenu: true})"><img src="img/cerca_de_mi.png" alt=""><br /><span class="letraHome_l">CERCA DE MÍ</span></ons-button>
+              <ons-button modifier="outline" onclick="menu.setMainPage('categorias.html', {closeMenu: true})"><img src="img/por_categorias.png" alt=""><br /><span class="letraHome_r">CATEGORÍAS</span></ons-button>
               </div>
+              <div class="tituloHome"><p>"La mejor publicidad cerca de tí"</p></div>
+              <div class="flecha19_r"></div>
             </div>
               <a ng-repeat="banner in banner.bannerportada" ng-if="banner.estado == '1'" target="_blank" ng-href="{{banner.url}}" class="bannerImagen" style="background: url('http://publify.com.mx/assets/images/imgclientes/{{banner.imagen}}') no-repeat;"></a>
           <div class="footer">
             <div class="botones">
-              <ons-button onclick="window.location.href='registro/login.html'"><i class="fa fa-user" aria-hidden="true"></i><br> ACCEDER</ons-button>
+              <ons-button class="boton_ruleta" onclick="window.location.href='registro/login.html'"><img src="img/acceder.png" alt=""><br> ACCEDER</ons-button>
               <ons-button class="boton_ruleta" onclick="window.location.href='ruleta.html'"><img src="img/ruleta.png" alt=""><br> RULETA</ons-button>
-              <ons-button onclick="menu.setMainPage('cupones.html', {closeMenu: true})"><i class="fa fa-gift" aria-hidden="true"></i><br> MIS CUPONES</ons-button>
-              <ons-button onclick="exitFromApp();"><i class="fa fa-power-off" aria-hidden="true"></i><br> SALIR</ons-button>
+              <ons-button class="boton_ruleta" onclick="menu.setMainPage('cupones.html', {closeMenu: true})"><img src="img/cupones.png" alt=""><br> MIS CUPONES</ons-button>
+              <ons-button class="boton_ruleta" onclick="exitFromApp();"><img src="img/salir.png" alt=""><br> SALIR</ons-button>
             </div>
             <div class="copy"><p>Publify &copy; 2018 | Versión: {{version}}</p></div>
           </div>
@@ -360,7 +365,7 @@
                 <p>&nbsp;</p>
                 <div class="content">
                   <div class="section group">
-                    <div class="col span_1_of_2" ng-repeat="usuarioA in pagcupon.cupon_usuario">
+                    <div class="col span_1_of_2" ng-repeat="usuarioA in pagcupon.cupon_usuario" id="cuponID-{{usuarioA.id}}">
                     <span class="texto_cupon" ng-repeat="cupon in bdcupon.cupones|filter:{id_cupon : usuarioA.id_cupon}">
                       <img ng-src="{{cupon.imagen}}" alt="{{cupon.texto}}">
                       <p>{{cupon.texto}}</p>
@@ -529,9 +534,18 @@
                      style="background-image: url(http://publify.com.mx/assets/images/imgclientes/fondo/{{sucursalinfo.img_movil}});">
                     <!-- <div class="logotipo"><img ng-src="http://publify.com.mx/assets/images/imgclientes/{{sucursalinfo.img_logo}}"></div>
                     <div class="card-name">{{sucursalinfo.nombre}}</div> -->
+                    <div class='slider'>
+                      <input name="input-slider" id='input-slide-autoplay' type="radio" class='input-slide' checked>
+                      <ul>
+                        <li class='slide-0'><img src="http://publify.com.mx/assets/images/imgclientes/fondo/{{sucursalinfo.img_app_slider1}}" alt=""></li>
+                        <li class='slide-1'><img src="http://publify.com.mx/assets/images/imgclientes/fondo/{{sucursalinfo.img_app_slider2}}" alt=""></li>
+                        <li class='slide-2'><img src="http://publify.com.mx/assets/images/imgclientes/fondo/{{sucursalinfo.img_app_slider3}}" alt=""></li>    
+                      </ul>            
+                    </div>
                     <div class="tipo_comida">{{distancia}} Km</div>
                     <!-- <div class="card-desc">{{sucursalinfo.twitter}}</div> -->
                 </div>
+
                 <ons-list class="lista_detalle"><ons-list-item>
                 <ons-row class="action">
                 <ons-col class="action-col">
@@ -615,6 +629,14 @@
                      style="background-image: url(http://publify.com.mx/assets/images/imgclientes/fondo/{{sucursalinfo.img_movil}});">
                     <!-- <div class="logotipo"><img ng-src="http://publify.com.mx/assets/images/imgclientes/{{sucursalinfo.img_logo}}"></div>
                     <div class="card-name">{{sucursalinfo.nombre}}</div> -->
+                    <div class='slider'>
+                      <input name="input-slider" id='input-slide-autoplay' type="radio" class='input-slide' checked>
+                      <ul>
+                        <li class='slide-0'><img src="http://publify.com.mx/assets/images/imgclientes/fondo/{{sucursalinfo.img_app_slider1}}" alt=""></li>
+                        <li class='slide-1'><img src="http://publify.com.mx/assets/images/imgclientes/fondo/{{sucursalinfo.img_app_slider2}}" alt=""></li>
+                        <li class='slide-2'><img src="http://publify.com.mx/assets/images/imgclientes/fondo/{{sucursalinfo.img_app_slider3}}" alt=""></li>    
+                      </ul>            
+                    </div>
                     <div class="tipo_comida">{{distancia}} Km</div>
                     <!-- <div class="card-desc">{{sucursalinfo.twitter}}</div> -->
                 </div>
@@ -700,9 +722,19 @@
                      style="background-image: url(http://publify.com.mx/assets/images/imgclientes/fondo/{{sucursalinfo.img_movil}});">
                     <!-- <div class="logotipo"><img ng-src="http://publify.com.mx/assets/images/imgclientes/{{sucursalinfo.img_logo}}"></div>
                     <div class="card-name">{{sucursalinfo.nombre}}</div> -->
+                    <div class='slider'>
+                      <input name="input-slider" id='input-slide-autoplay' type="radio" class='input-slide' checked>
+                      <ul>
+                        <li class='slide-0'><img src="http://publify.com.mx/assets/images/imgclientes/fondo/{{sucursalinfo.img_app_slider1}}" alt=""></li>
+                        <li class='slide-1'><img src="http://publify.com.mx/assets/images/imgclientes/fondo/{{sucursalinfo.img_app_slider2}}" alt=""></li>
+                        <li class='slide-2'><img src="http://publify.com.mx/assets/images/imgclientes/fondo/{{sucursalinfo.img_app_slider3}}" alt=""></li>    
+                      </ul>            
+                    </div>
                     <div class="tipo_comida">{{distancia}} Km</div>
                     <!-- <div class="card-desc">{{sucursalinfo.twitter}}</div> -->
+                    
                 </div>
+                
                 <ons-list class="lista_detalle"><ons-list-item>
                 <ons-row class="action">
                 <ons-col class="action-col">
@@ -891,6 +923,10 @@
           </ons-page>
         </ons-template>
         <ons-template id="menu.html" class="menu-pagina">
+          <div class="content bloque_perfil">
+            <p id="nombre_perfil"></p>
+            <p id="puntos_perfil"></p>
+          </div>
             <ons-list class="lista-menu">
                 <ons-list-item modifier="chevron" onclick="menu.setMainPage('page1.html', {closeMenu: true})">
                   <i class="fa fa-home" aria-hidden="true"></i> Inicio
@@ -907,9 +943,9 @@
                 <ons-list-item modifier="chevron" onclick="menu.setMainPage('categorias.html', {closeMenu: true})">
                   <ons-icon icon="fa-sitemap"></ons-icon> Por categoria
                 </ons-list-item>
-                <ons-list-item modifier="chevron" onclick="window.location.href='ruleta.html'">
+                <!-- <ons-list-item modifier="chevron" onclick="window.location.href='ruleta.html'">
                   <img src="img/ruleta.png" style="position:relative;top: 10px;"> Ruleta
-                </ons-list-item>
+                </ons-list-item> -->
                 <ons-list-item modifier="chevron" onclick="menu.setMainPage('lista.html', {closeMenu: true})">
                   <ons-icon icon="fa-street-view"></ons-icon> Cerca de mí
                 </ons-list-item>
@@ -962,6 +998,11 @@
               localStorage.PuntosUsuario = puntos2;
             });
           };
+          if (localStorage.NombreUsuario) {
+            document.getElementById("nombre_perfil").innerHTML = "Hola "+ localStorage.NombreUsuario;
+            document.getElementById("puntos_perfil").innerHTML = "Tienes: "+localStorage.PuntosUsuario;
+          };
+
         </script>
     </body>
 </html>

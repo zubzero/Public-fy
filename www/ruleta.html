@@ -23,7 +23,7 @@
             <img src="ruleta/logo.png" alt="Logo">
             <p>&nbsp;</p>
             <h4 style="color:#fff;">Tira la ruleta para ganar una de nuestras excelentes promociones</h4>
-            <small style="color: yellow">20 puntos por tirar la ruleta</small>
+            <small style="color: yellow">Gana 20 puntos por girarla</small>
             <br /><br>
             <div id="ruleta1" class="the_wheel">
                 <img id="spin_button" src="ruleta/button.png" alt="Spin" onClick="startSpin();" />
@@ -42,15 +42,6 @@
 
             var puntos1 = localStorage.PuntosUsuario;
             document.getElementById('nombre').textContent = usuario1;
-            if (puntos1 <= 19){
-                swal({
-                  type: 'error',
-                  title: 'No tienes tienes puntos suficientes para participar.'
-                });
-                localStorage.PuntosUsuario = 15;
-                document.getElementById('puntos_usuario').textContent = 15;
-                $('#ruleta1').css("display", "none");
-            };
             document.getElementById('puntos_usuario').textContent = puntos1;
             // Create new wheel object specifying the parameters at creation time.
             var theWheel = new Winwheel({
@@ -128,7 +119,8 @@
                 var usuarioFecha = localStorage.getItem("NacimientoUsuario");
                 var usuarioApellidos = localStorage.getItem("ApellidosUsuario");
                 var usuarioTimestamp = Date.now();
-                var puntos2 = puntos1 - 20;
+                var n2 = 20;
+                var puntos2 = parseInt(puntos1) + n2;
                 document.getElementById('spin_button').className = "";
                 document.getElementById('puntos_usuario').textContent = puntos2;
                 $.ajax({
@@ -161,7 +153,7 @@
                 // Do basic alert of the segment text. You would probably want to do something more interesting with this information.
                 // swal("¡Felicidades!, " + winningSegment.text);
                 // Funcion para guardar los cupones
-            $.getJSON('http://publify.com.mx/api.php/cupones?transform=1&filter=activo,eq,1', function(data) {
+            $.getJSON('http://publify.com.mx/api.php/cupones?transform=1&filter=activo,eq,1&filter=activo,eq,1&filter=total,bt,1,1000', function(data) {
                 var myObj, i, x = "";
                 myObj = data;
                 countObjt = myObj.cupones.length;
@@ -172,11 +164,13 @@
                 localStorage.cuponId = myObj.cupones[cupon].id_cupon;
                 localStorage.cuponImg = myObj.cupones[cupon].imagen;
                 localStorage.cuponVig = myObj.cupones[cupon].vigencia;
+                var quitar1 = 1;
+                localStorage.cuponTotal = myObj.cupones[cupon].total - quitar1;
                 console.log(cupon);
                 console.log(myObj.cupones[cupon].texto);
                 for (i = 0; i < myObj.cupones.length; i++) {
                     x += myObj.cupones[i] + "<br>";
-                }
+                };
                 console.log(data);
                 var miObjeto = data;
                 for(var k in data) {
@@ -237,7 +231,27 @@
                     confirmButtonText: "<a class='Swalbutton' href='index.html'>Ir al inicio para ver cupones</a>"
                     });
                 });
+                var IdCupon = localStorage.cuponId;
+                var TotalC = localStorage.cuponTotal;
+                console.log(TotalC);
+                $.ajax({
+                    method: "PUT",
+                    url: "http://publify.com.mx/api.php/cupones/"+IdCupon,
+                    data: {total: TotalC}
+                  })
+                  .done(function( msg ) {});
             };
+            // _Checar que no se dupliquen
+            // function RestarCupon(){
+            //     var IdCupon = localStorage.cuponId;
+            //     var TotalC = localStorage.cuponTotal;
+            //     $.ajax({
+            //         method: "POST",
+            //         url: "http://publify.com.mx/api.php/cupones/"+IdCupon,
+            //         data: { total: TotalC}
+            //       })
+            //       .done(function( msg ) {});
+            // };
             var user = firebase.auth().currentUser;
             firebase.auth().onAuthStateChanged(function(user) {
               if (!user) {

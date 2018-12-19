@@ -112,7 +112,7 @@
           $.ajax({
             method: "POST",
             url: "http://publify.com.mx/api.php/usuarios",
-            data: { nombre: nom, apellidos: ape, email: email, fecha_nacimiento: nacimiento, contrasena: contrasena, puntos: 80, puntos_registrarse: 80, activo: 1}
+            data: { nombre: nom, apellidos: ape, email: email, fecha_nacimiento: nacimiento, contrasena: contrasena, puntos: 100, puntos_registrarse: 100, activo: 1}
           })
           .done(function( msg ) {
             swal({
@@ -121,7 +121,7 @@
                 confirmButtonText:
                 '<a href="../ruleta.html" target="_self">Hecho</a>'
             });
-            localStorage.PuntosUusario = 80;
+            localStorage.PuntosUusario = 100;
             localStorage.EmailUsuario = email;
             localStorage.MSGUsuario = msg;
           });
