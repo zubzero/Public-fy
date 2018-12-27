@@ -14,8 +14,8 @@
     <script type="text/javascript" src="lib/onsenold/jquery.js"></script>
     <script src="js/onsenui18.min.js"></script>
     <script type="text/javascript" src="js/sweetalert.min.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlWlGhok9hRyzTGlWlVTmKzi6SW5GlBqY&libraries=geometry"></script>
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?v=3exp&libraries=geometry"></script> -->
+    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlWlGhok9hRyzTGlWlVTmKzi6SW5GlBqY&libraries=geometry"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3exp&libraries=geometry"></script>
     <script src="./js/ng-map.min.js"></script>
         <script>
         function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
@@ -90,7 +90,7 @@
       
     });
     app.controller("homeCtl", function($scope, position, $http){
-      $scope.version = "1.5";
+      $scope.version = "1.5.2";
       $http.get('http://publify.com.mx/api.php/bannerportada?order=orden,asc', {cache: true}).success(function (data, status, headers, config) {
       $scope.banner = php_crud_api_transform(data);
       }).error(function (data, status, headers, config) {});
@@ -593,9 +593,10 @@
                             <b><i class="fa fa-clock-o" aria-hidden="true"></i> Horarios:</b> {{sucursalinfo.horario}}
                         </li>
                     </div>
-                    <li class="list__item"><ng-map center="{{sucursalinfo.Latitud}},{{sucursalinfo.Longitud}}" zoom="15">
+                    <li class="list__item">                      
+                      <ng-map center="{{sucursalinfo.Latitud}},{{sucursalinfo.Longitud}}" zoom="15">
                       <marker position="{{sucursalinfo.Latitud}},{{sucursalinfo.Longitud}}" title="{{sucursalinfo.nombre}}"></marker>
-                    </ng-map>
+                      </ng-map>
                     </li>
                     <li class="list__header">
                         Redes sociales:
