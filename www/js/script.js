@@ -17,12 +17,12 @@ if (!localStorage.puntosiniciales){
     };
 
   var config = {
-    apiKey: "AIzaSyDZnvMzeELOE9Edf7xV0I57QMVPNMzZ8Uo",
-    authDomain: "proyecto1-25a90.firebaseapp.com",
-    databaseURL: "https://proyecto1-25a90.firebaseio.com",
-    projectId: "proyecto1-25a90",
-    storageBucket: "proyecto1-25a90.appspot.com",
-    messagingSenderId: "511136041527"
+    apiKey: "AIzaSyAPcoI0bLD8MEe9RkOl1pP5C_kQDUlAp3E",
+    authDomain: "publify-3955f.firebaseapp.com",
+    databaseURL: "https://publify-3955f.firebaseio.com",
+    projectId: "publify-3955f",
+    storageBucket: "publify-3955f.appspot.com",
+    messagingSenderId: "936095622056"
   };
   firebase.initializeApp(config);
 

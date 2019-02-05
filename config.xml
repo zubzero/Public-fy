@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.publify.mx" version="1.5.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.publify.mx" version="1.5.8" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Publify</name>
     <description>
         Red de negocios
@@ -25,10 +25,12 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <plugin name="cordova-plugin-googlemaps" source="npm" spec="2.1.0">
-        <param name="API_KEY_FOR_ANDROID" value="AIzaSyB7Xt-07PCUkoz3KqVhlbGr9kLHE_6o3ZY" />
-        <param name="API_KEY_FOR_IOS" value="AIzaSyD3sNpQ650j-eWywJeftVerqdbP22m64r0" />
-    </plugin>
+    <plugin name="cordova-plugin-googlemaps" spec="^2.3.6">
+        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyAlFoalCCJDTtxgxmZkKn6RZ0duAgqg3EA"/>
+        <param name="API_KEY_FOR_IOS" value="AIzaSyAeOZQDoS_TvBJj1cDIXJ_ocRStPrupVMg" />
+        <variable name="PLAY_SERVICES_VERSION" value="15.0.1"/>
+        <variable name="ANDROID_SUPPORT_V4_VERSION" value="27.1.1"/>
+      </plugin>
     <platform name="android">
         <allow-intent href="market:*" />
         <preference name="SplashScreen" value="www/res/screen/android/screen-lpdi-portrait.png" />
@@ -40,31 +42,22 @@
         <feature name="SocialSharing">
             <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
         </feature>
-        <icon src="www/res/icon/android/icon-72-hdpi.png" />
-        <icon density="ldpi" src="www/res/icon/android/drawable-ldpi-icon.png" />
-        <icon density="mdpi" src="www/res/icon/android/drawable-mdpi-icon.png" />
-        <icon density="hdpi" src="www/res/icon/android/drawable-hdpi-icon.png" />
-        <icon density="xhdpi" src="www/res/icon/android/drawable-xhdpi-icon.png" />
+        <icon src="www/res/icon/android/publify-app-72PX.png" />
+        <icon density="ldpi" src="www/res/icon/android/publify-app-36PX.png" />
+        <icon density="mdpi" src="www/res/icon/android/publify-app-48PX.png" />
+        <icon density="hdpi" src="www/res/icon/android/publify-app-72PX.png" />
+        <icon density="xhdpi" src="www/res/icon/android/publify-app-96PX.png" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
-        <icon src="res/ios/icon-60@3x.png" width="180" height="180" />
-        <icon src="res/ios/icon-60.png" width="60" height="60" />
-        <icon src="res/ios/icon-60@2x.png" width="120" height="120" />
-        <icon src="res/ios/icon-76.png" width="76" height="76" />
-        <icon src="res/ios/icon-76@2x.png" width="152" height="152" />
-        <icon src="res/ios/icon-40.png" width="40" height="40" />
-        <icon src="res/ios/icon-40@2x.png" width="80" height="80" />
-        <icon src="res/ios/icon.png" width="57" height="57" />
-        <icon src="res/ios/icon@2x.png" width="114" height="114" />
-        <icon src="res/ios/icon-72.png" width="72" height="72" />
-        <icon src="res/ios/icon-72@2x.png" width="144" height="144" />
+        <icon src="res/ios/icon-60.png" width="60" height="60" /> 
+        <icon src="res/ios/icon-76.png" width="76" height="76" /> 
+        <icon src="res/ios/icon-40.png" width="40" height="40" /> 
+        <icon src="res/ios/icon.png" width="57" height="57" /> 
+        <icon src="res/ios/icon-72.png" width="72" height="72" /> 
         <icon src="res/ios/icon-small.png" width="29" height="29" />
-        <icon src="res/ios/icon-small@2x.png" width="58" height="58" />
-        <icon src="res/ios/icon-small@3x.png" />
         <icon src="res/ios/icon-50.png" width="50" height="50" />
-        <icon src="res/ios/icon-50@2x.png" width="100" height="100" />
         <feature name="SocialSharing">
             <param name="ios-package" value="SocialSharing" />
             <preference name="Orientation" value="portrait" />
