@@ -270,10 +270,10 @@
                       return f1.distance - f2.distance;
                   }).map(function (f) {
                     if (f.estado = 1 && f.id_categoria) {
-                      var tel1 = f.telefono;
-                      var tel = tel1.slice(0, 4) + '-' + tel1.slice(3,7);
+                      // var tel1 = f.telefono;
+                      // var tel = tel1.slice(0, 4) + '-' + tel1.slice(3,7);
                       return "<li class='timeline-li' style='background:url(http://publify.com.mx/assets/images/imgclientes/fondo/" + f.img_movil + ");'><a onclick='idnew="+f.id+"; menu.setMainPage(\"detalle.html\")'>" + "<div ng-if='" + f.img_logo + "'><img src='http://publify.com.mx/assets/images/imgclientes/"+f.img_logo+"' class='timeline-image'></div><div class='timeline-date distancia'>" + f.distance + " Km</div>" + 
-                                          "<div class='timeline-message'><p>Tel: "+ tel +"</p></div><div class='timeline-from'><p class='timeline-name'>" + f.direccion + "</p><span class='timeline-id'>"+ f.Descripcion_Corta +"</span></div></a></li>";                
+                                          "<div class='timeline-message'><p>Tel: "+ f.telefono +"</p></div><div class='timeline-from'><p class='timeline-name'>" + f.direccion + "</p><span class='timeline-id'>"+ f.Descripcion_Corta +"</span></div></a></li>";                
                     };
                   })
               );
@@ -907,10 +907,6 @@
             <h4>CATEGORÍAS</h4>
             <p>El mundo de la publicidad es inmenso así que para facilitar tu búsqueda conjuntamos los diferentes negocios en 10 sencillas categorías, las empresas se organizan de cuerdo a la cercanía contigo.</p>
 
-            <h5><ons-icon icon="fa-street-view"></ons-icon> BUSQUEDA POR CERCANIA</h5>
-            <p>Cada negocio lo puedes localizar por cercania hacia ti...por medio de google maps encuentra facilmente a traves de un sencillo motor de busqueda en mas de 3 km alrededro de ti..VIVE..CLICKEA ...ENCUENTRA</p>
-            <h5><i class="fa fa-sitemap" aria-hidden="true"></i> BUSQUEDA POR CATEGORIAS</h5>
-            <p>Tenemos para ti mas de 50 categorías en la cual todos los establecimientos están divididos y sera mas fácil encontrar lo que buscas, todo lo mas cercano a ti..VIVE..CLICKEA ...ENCUENTRA</p>
             <p>Con cada empresa encontrarás información importante como promociones, horario, dirección y correo, además con el botón “navegar” podrás trazar tu ruta de destino, y con el botón “llamar” hablar directamente al negocio de tu interés. También podrás compartir la información del negocio a tus contactos a través de whatsapp y redes sociales</p>
             <h5>¿COMO FUNCIONA LA RULETA Y LOS CUPONES?</h5>
             <p>Lo primero que tienes que hacer es registrarte para poder acumular puntos, obtén puntos cada vez que gires la ruleta la cual podrás girar cada 24 horas, los puntos que acumules te servirán para cambiarlo por mas premios, cada vez que giras la ruleta obtienes un cupón con promociones exclusivas el cual podrás canjear dentro de la vigencia establecida en el mismo, puedes consultar tus cupones ganados ingresando al apartado “mis cupones”</p>
@@ -929,7 +925,7 @@
                 <ons-list-item modifier="chevron" onclick="window.location.href='registro/index.html'">
                   <i class="fa fa-user-plus" aria-hidden="true"></i> Registrarme
                 </ons-list-item>
-                <ons-list-item modifier="chevron" onclick="menu.setMainPage('login.html', {closeMenu: true})">
+                <ons-list-item modifier="chevron" onclick="window.location.href='registro/login.html'">
                  <i class="fa fa-user" aria-hidden="true"></i> Acceder
                 </ons-list-item>
                 <ons-list-item modifier="chevron" onclick="menu.setMainPage('instrucciones.html', {closeMenu: true})">

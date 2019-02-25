@@ -231,6 +231,8 @@
       <h3>Si aún no te has registrado da <a href="index.html">click aquí.</a></h3>
       <br>
       <h3>Llena el siguiente formulario para que podamos otorgarte tus cupones, puntos y promociones que tenemos para ti.</h3>
+      <br>
+      <h3 style="color: yellow">Si no recuerda su contraseña, ponga su email en el campo y recibira en el correo un enlace para restablecer contraseña.</h3>
         <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
           <p>&nbsp;</p>
 
@@ -246,7 +248,7 @@
             &nbsp;&nbsp;&nbsp;
             <button style="display: none;" class="mdl-button mdl-js-button mdl-button--raised" disabled id="quickstart-verify-email" name="verify-email">Send Email Verification</button>
             &nbsp;&nbsp;&nbsp;
-            <button class="mdl-button mdl-js-button mdl-button--raised" id="quickstart-password-reset" name="verify-email">Resetear contraseña</button>
+            <button class="mdl-button mdl-js-button mdl-button--raised" id="quickstart-password-reset" name="verify-email">Recordar contraseña</button>
             <!-- Container where we'll display the user details -->
             <p>&nbsp;</p>
             <div style="display:none;" id="quickstart-account-details"></div>
@@ -272,7 +274,7 @@
             // Handler for .ready() called.
             window.setTimeout(function () {
                 location.href = "../index.html";
-            }, 1800);
+            }, 800);
         });
         user.providerData.forEach(function (profile) {
           localStorage.EmailUsuario = profile.email;
